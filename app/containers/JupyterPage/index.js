@@ -14,7 +14,7 @@ import { useInjectReducer } from '../../share/utils/injectReducer';
 import { useInjectSaga } from '../../share/utils/injectSaga';
 import reducer from './redux/reducer';
 // import saga from './saga';
-import Button from '../../components/Button';
+import Button from '../../share/components/Button';
 import history from '../../share/utils/history';
 import Section from './Section';
 

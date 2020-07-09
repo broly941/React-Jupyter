@@ -4,25 +4,19 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import React, { memo } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { AppRouts } from '../../share/constants/route-config';
-import { makeSelectIsUserLoggedIn } from '../../containers/App/redux/selectors';
+import { AppRouts } from '../../constants/route-config';
+import { makeSelectIsUserLoggedIn } from '../../../containers/App/redux/selectors';
 
-const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
+const UnauthorizedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      isLoggedIn ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{ pathname: AppRouts.WELCOME, state: { from: props.location } }}
-        />
-      )
+      isLoggedIn ? <Redirect to={AppRouts.HOME} /> : <Component {...props} />
     }
   />
 );
 
-ProtectedRoute.propTypes = {
+UnauthorizedRoute.propTypes = {
   component: PropTypes.func,
   location: PropTypes.object,
   isLoggedIn: PropTypes.bool,
@@ -37,4 +31,4 @@ const withConnect = connect(mapStateToProps);
 export default compose(
   withConnect,
   memo,
-)(ProtectedRoute);
+)(UnauthorizedRoute);

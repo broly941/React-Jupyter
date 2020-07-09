@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
 
 import Footer from '../index';
-import configureStore from '../../../configureStore';
+import configureStore from '../../../../configureStore';
 
 describe('<Footer />', () => {
   let store;

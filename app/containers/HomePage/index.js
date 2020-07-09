@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import H2 from 'components/H2';
+import H2 from '../../share/components/H2';
 import { Link } from 'react-router-dom';
 import { useInjectReducer } from '../../share/utils/injectReducer';
 import { useInjectSaga } from '../../share/utils/injectSaga';
@@ -15,8 +15,8 @@ import messages from './messages';
 import { logoutRequest } from '../App/redux/actions';
 import reducer from './redux/reducer';
 // import saga from './saga';
-import StyledButton from '../../components/Button/StyledButton';
-import Button from '../../components/Button';
+import StyledButton from '../../share/components/Button/StyledButton';
+import Button from '../../share/components/Button';
 import { AppRouts } from '../../share/constants/route-config';
 
 const key = 'home';

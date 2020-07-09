@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import H2 from 'components/H2';
+import H2 from '../../share/components/H2';
 import { Link } from 'react-router-dom';
 import { useInjectReducer } from '../../share/utils/injectReducer';
 import Form from './Form';
@@ -16,8 +16,8 @@ import { loginRequest } from '../App/redux/actions';
 import reducer from './redux/reducer';
 // import saga from './saga';
 import { AppRouts } from '../../share/constants/route-config';
-import Button from '../../components/Button';
-import StyledButton from '../../components/Button/StyledButton';
+import Button from '../../share/components/Button';
+import StyledButton from '../../share/components/Button/StyledButton';
 
 const key = 'welcome';
 

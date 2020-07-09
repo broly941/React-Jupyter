@@ -17,17 +17,17 @@ import SignUpPage from 'containers/SignUpPage/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
 import JupyterPage from 'containers/JupyterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Footer from 'components/Footer';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import Footer from '../../share/components/Footer';
 import { useInjectSaga } from '../../share/utils/injectSaga';
 import saga from './redux/saga';
 import GlobalStyle from '../../global-styles';
 import { isLoggedInRequest } from './redux/actions';
 import { AppRouts } from '../../share/constants/route-config';
-import UnauthorizedRoute from '../../components/routes/UnauthorizedRoute';
-import ProtectedRoute from '../../components/routes/ProtectedRoute';
+import UnauthorizedRoute from '../../share/components/routes/UnauthorizedRoute';
+import ProtectedRoute from '../../share/components/routes/ProtectedRoute';
 
 const key = 'app';
 
