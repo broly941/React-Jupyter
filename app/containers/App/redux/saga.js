@@ -5,10 +5,10 @@ import {
   LOGOUT_REQUEST,
   REGISTER_REQUEST,
   IS_LOGGED_IN_REQUEST,
-} from 'containers/App/constants';
+} from 'containers/App/redux/constants';
 import { put } from '@redux-saga/core/effects';
-import auth from '../../utils/auth';
-import genSalt from '../../utils/auth/salt';
+import auth from '../../../share/utils/auth';
+import genSalt from '../../../share/utils/auth/salt';
 import { loginSuccess, logoutSuccess, registerSuccess } from './actions';
 
 export function* authorize({ username, password, isRegistering }) {

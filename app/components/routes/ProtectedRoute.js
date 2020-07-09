@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import React, { memo } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { AppRouts } from '../../constants/route-config';
-import { makeSelectIsUserLoggedIn } from '../../containers/App/selectors';
+import { AppRouts } from '../../share/constants/route-config';
+import { makeSelectIsUserLoggedIn } from '../../containers/App/redux/selectors';
 
 const ProtectedRoute = ({ component: Component, isLoggedIn, ...rest }) => (
   <Route

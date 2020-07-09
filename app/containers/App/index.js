@@ -18,14 +18,14 @@ import HomePage from 'containers/HomePage/Loadable';
 import JupyterPage from 'containers/JupyterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
-import { useInjectSaga } from 'utils/injectSaga';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import saga from './saga';
+import { useInjectSaga } from '../../share/utils/injectSaga';
+import saga from './redux/saga';
 import GlobalStyle from '../../global-styles';
-import { isLoggedInRequest } from './actions';
-import { AppRouts } from '../../constants/route-config';
+import { isLoggedInRequest } from './redux/actions';
+import { AppRouts } from '../../share/constants/route-config';
 import UnauthorizedRoute from '../../components/routes/UnauthorizedRoute';
 import ProtectedRoute from '../../components/routes/ProtectedRoute';
 

@@ -9,13 +9,13 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
 import Iframe from 'react-iframe';
-import reducer from './reducer';
+import { useInjectReducer } from '../../share/utils/injectReducer';
+import { useInjectSaga } from '../../share/utils/injectSaga';
+import reducer from './redux/reducer';
 // import saga from './saga';
 import Button from '../../components/Button';
-import history from '../../utils/history';
+import history from '../../share/utils/history';
 import Section from './Section';
 
 const key = 'jupyter';

@@ -5,7 +5,7 @@ To load a component asynchronously, create a `Loadable` file by hand or via comp
 This is the content of the file by default:
 
 ```JS
-import loadable from 'utils/loadable';
+import loadable from '../../share/utils/loadable';
 
 export default loadable(() => import('./index'));
 ```
@@ -14,7 +14,7 @@ In this case, the app won't show anything while loading your component. You can 
 
 ```JS
 import React from 'react';
-import loadable from 'utils/loadable';
+import loadable from '../../share/utils/loadable';
 
 export default loadable(() => import('./index'), {
   fallback: <div>Loading...</div>,

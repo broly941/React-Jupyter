@@ -6,18 +6,18 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
 import H2 from 'components/H2';
 import { Link } from 'react-router-dom';
+import { useInjectReducer } from '../../share/utils/injectReducer';
+import { useInjectSaga } from '../../share/utils/injectSaga';
 import Section from './Section';
 import messages from './messages';
-import { logoutRequest } from '../App/actions';
-import reducer from './reducer';
+import { logoutRequest } from '../App/redux/actions';
+import reducer from './redux/reducer';
 // import saga from './saga';
 import StyledButton from '../../components/Button/StyledButton';
 import Button from '../../components/Button';
-import { AppRouts } from '../../constants/route-config';
+import { AppRouts } from '../../share/constants/route-config';
 
 const key = 'home';
 

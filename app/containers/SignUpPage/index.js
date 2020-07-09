@@ -5,17 +5,17 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { useInjectReducer } from 'utils/injectReducer';
 import H2 from 'components/H2';
 import { Link } from 'react-router-dom';
+import { useInjectReducer } from '../../share/utils/injectReducer';
 import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import { registerRequest } from '../App/actions';
-import reducer from './reducer';
+import { registerRequest } from '../App/redux/actions';
+import reducer from './redux/reducer';
 // import saga from './saga';
-import { AppRouts } from '../../constants/route-config';
+import { AppRouts } from '../../share/constants/route-config';
 import Button from '../../components/Button';
 import StyledButton from '../../components/Button/StyledButton';
 
