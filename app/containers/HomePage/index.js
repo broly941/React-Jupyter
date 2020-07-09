@@ -1,9 +1,3 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
@@ -20,7 +14,7 @@ import Section from './Section';
 import messages from './messages';
 import { logoutRequest } from '../App/actions';
 import reducer from './reducer';
-import saga from './saga';
+// import saga from './saga';
 import StyledButton from '../../components/Button/StyledButton';
 import Button from '../../components/Button';
 import { AppRouts } from '../../constants/route-config';
@@ -29,7 +23,7 @@ const key = 'home';
 
 export function HomePage({ onLogout }) {
   useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
+  // useInjectSaga({ key, saga });
 
   return (
     <article>

@@ -1,9 +1,3 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
@@ -12,7 +6,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
 import H2 from 'components/H2';
 import { Link } from 'react-router-dom';
 import Form from './Form';
@@ -21,16 +14,16 @@ import Section from './Section';
 import messages from './messages';
 import { registerRequest } from '../App/actions';
 import reducer from './reducer';
-import saga from './saga';
+// import saga from './saga';
 import { AppRouts } from '../../constants/route-config';
 import Button from '../../components/Button';
-import StyledButton from "../../components/Button/StyledButton";
+import StyledButton from '../../components/Button/StyledButton';
 
 const key = 'signUp';
 
 export function WelcomePage({ userRegistration }) {
   useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
+  // useInjectSaga({ key, saga });
 
   const onSubmitSignUpForm = event => {
     event.preventDefault();

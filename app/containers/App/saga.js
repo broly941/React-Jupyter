@@ -1,11 +1,15 @@
-import {hashSync} from 'bcryptjs';
-import {call, takeLatest} from 'redux-saga/effects';
-import {LOGIN_REQUEST, LOGOUT_REQUEST, REGISTER_REQUEST,} from 'containers/App/constants';
-import {put} from '@redux-saga/core/effects';
+import { hashSync } from 'bcryptjs';
+import { call, takeLatest } from 'redux-saga/effects';
+import {
+  LOGIN_REQUEST,
+  LOGOUT_REQUEST,
+  REGISTER_REQUEST,
+  IS_LOGGED_IN_REQUEST,
+} from 'containers/App/constants';
+import { put } from '@redux-saga/core/effects';
 import auth from '../../utils/auth';
 import genSalt from '../../utils/auth/salt';
-import {loginSuccess, logoutSuccess, registerSuccess} from './actions';
-import {IS_LOGGED_IN_REQUEST} from "./constants";
+import { loginSuccess, logoutSuccess, registerSuccess } from './actions';
 
 export function* authorize({ username, password, isRegistering }) {
   try {

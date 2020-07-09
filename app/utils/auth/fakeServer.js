@@ -12,9 +12,9 @@ const server = {
   init() {
     if (localStorage.users === undefined || !localStorage.encrypted) {
       // Set default user
-      const test = 'Ilya Korzhavin';
+      const test = 'test';
       const testSalt = genSalt(test);
-      const testPass = hashSync('123456', testSalt);
+      const testPass = hashSync('password', testSalt);
 
       users = {
         [test]: hashSync(testPass, salt),

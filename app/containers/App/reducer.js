@@ -12,12 +12,7 @@ import { LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_SUCCESS } from './constants';
 
 // The initial state of the App
 export const initialState = {
-  loading: false,
   error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
-  },
   isUserLoggedIn: false,
 };
 
