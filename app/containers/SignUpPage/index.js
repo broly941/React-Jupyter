@@ -4,37 +4,34 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-
-import H2 from '../../share/components/H2';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
 import { useInjectReducer } from '../../share/utils/injectReducer';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
 import messages from './messages';
 import { registerRequest } from '../App/redux/actions';
 import reducer from './redux/reducer';
-// import saga from './saga';
 import { AppRouts } from '../../share/constants/route-config';
-import Button from '../../share/components/Button';
-import StyledButton from '../../share/components/Button/StyledButton';
+import { ContainerWrapper } from '../../share/components/container-wrapper';
+import './SignUpPage.scss';
 
 const key = 'signUp';
 
 export function WelcomePage({ userRegistration }) {
   useInjectReducer({ key, reducer });
-  // useInjectSaga({ key, saga });
 
-  const onSubmitSignUpForm = event => {
-    event.preventDefault();
+  const onSubmitSignUpForm = e => {
+    e.preventDefault();
     userRegistration({
-      username: event.target.username.value,
-      password: event.target.password.value,
+      username: e.target.username.value,
+      password: e.target.password.value,
     });
   };
 
   return (
-    <article>
+    <ContainerWrapper>
+      <ToastContainer />
       <Helmet>
         <title>Sign up Page</title>
         <meta
@@ -42,30 +39,27 @@ export function WelcomePage({ userRegistration }) {
           content="A React.js Boilerplate application homepage"
         />
       </Helmet>
-      <div>
-        <Section>
-          <H2>
-            <FormattedMessage {...messages.signUpHeader} />
-          </H2>
-          <Form onSubmit={onSubmitSignUpForm}>
-            <label htmlFor="username">
-              <Input id="username" type="text" placeholder="login" />
-            </label>
-            <label htmlFor="password">
-              <Input id="password" type="password" placeholder="password" />
-            </label>
-            <br />
-            <br />
-            <StyledButton type="submit" value="Submit">
-              Sign up
-            </StyledButton>
-          </Form>
-          <Link to={AppRouts.WELCOME}>
-            <Button>Welcome</Button>
-          </Link>
-        </Section>
-      </div>
-    </article>
+      <h1>
+        <FormattedMessage {...messages.signUpHeader} />
+      </h1>
+      <Form onSubmit={onSubmitSignUpForm} className="sign-up-page-form">
+        <Form.Group controlId="formBasicUserName">
+          <Form.Label>Login</Form.Label>
+          <Form.Control name="username" type="username" />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control name="password" type="password" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Sign Up
+        </Button>
+      </Form>
+      <Link to={AppRouts.WELCOME}>
+        <Button variant="outline-primary">Log In</Button>
+      </Link>
+    </ContainerWrapper>
   );
 }
 

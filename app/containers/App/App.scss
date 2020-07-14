@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/bootstrap";
+
+#app {
+  height: 100%;
+  overflow: auto;
+}
+
+.mailContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}

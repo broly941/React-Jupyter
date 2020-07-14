@@ -1,4 +1,5 @@
 import { hashSync, genSaltSync, compareSync } from 'bcryptjs';
+import { toast } from 'react-toastify';
 import genSalt from './salt';
 
 let users;
@@ -47,8 +48,10 @@ const server = {
       } else {
         let error;
         if (userExists) {
+          toast.error('Wrong password');
           error = new Error('Wrong password');
         } else {
+          toast.error("User doesn't exist");
           error = new Error("User doesn't exist");
         }
         reject(error);
@@ -72,6 +75,7 @@ const server = {
         // Resolve when done
         resolve({ registered: true });
       } else {
+        toast.error('Username already in use');
         // Reject with appropiate error
         reject(new Error('Username already in use'));
       }

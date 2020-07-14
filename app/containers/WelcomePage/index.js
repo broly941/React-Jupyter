@@ -4,26 +4,22 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-
-import H2 from '../../share/components/H2';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useInjectReducer } from '../../share/utils/injectReducer';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
 import messages from './messages';
 import { loginRequest } from '../App/redux/actions';
 import reducer from './redux/reducer';
-// import saga from './saga';
+import { ContainerWrapper } from '../../share/components/container-wrapper';
 import { AppRouts } from '../../share/constants/route-config';
-import Button from '../../share/components/Button';
-import StyledButton from '../../share/components/Button/StyledButton';
+import './WelcomePage.scss';
 
 const key = 'welcome';
 
 export function WelcomePage({ userLogin }) {
   useInjectReducer({ key, reducer });
-  // useInjectSaga({ key, saga });
 
   const onSubmitLoginForm = event => {
     event.preventDefault();
@@ -34,39 +30,36 @@ export function WelcomePage({ userLogin }) {
   };
 
   return (
-    <article>
+    <ContainerWrapper>
+      <ToastContainer />
       <Helmet>
         <title>Welcome Page</title>
         <meta
           name="description"
-          content="A React.js Boilerplate application homepage"
+          content="A React.js Boilerplate application Welcome Page"
         />
       </Helmet>
-      <div>
-        <Section>
-          <H2>
-            <FormattedMessage {...messages.welcomeHeader} />
-          </H2>
+      <h1>
+        <FormattedMessage {...messages.welcomeHeader} />
+      </h1>
+      <Form onSubmit={onSubmitLoginForm} className="welcome-page-form">
+        <Form.Group controlId="formBasicUserName">
+          <Form.Label>Login</Form.Label>
+          <Form.Control name="username" type="username" />
+        </Form.Group>
 
-          <Form onSubmit={onSubmitLoginForm}>
-            <label htmlFor="username">
-              <Input id="username" type="text" placeholder="login" />
-            </label>
-            <label htmlFor="password">
-              <Input id="password" type="password" placeholder="password" />
-            </label>
-            <br />
-            <br />
-            <StyledButton type="submit" value="Submit">
-              Log in
-            </StyledButton>
-          </Form>
-          <Link to={AppRouts.SIGN_UP}>
-            <Button>Sign up</Button>
-          </Link>
-        </Section>
-      </div>
-    </article>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control name="password" type="password" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Log In
+        </Button>
+      </Form>
+      <Link to={AppRouts.SIGN_UP}>
+        <Button variant="outline-primary">Sign up</Button>
+      </Link>
+    </ContainerWrapper>
   );
 }
 

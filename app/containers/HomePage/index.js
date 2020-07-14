@@ -6,48 +6,49 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import H2 from '../../share/components/H2';
 import { Link } from 'react-router-dom';
+import { Button, Jumbotron } from 'react-bootstrap';
 import { useInjectReducer } from '../../share/utils/injectReducer';
-import { useInjectSaga } from '../../share/utils/injectSaga';
-import Section from './Section';
 import messages from './messages';
 import { logoutRequest } from '../App/redux/actions';
 import reducer from './redux/reducer';
-// import saga from './saga';
-import StyledButton from '../../share/components/Button/StyledButton';
-import Button from '../../share/components/Button';
 import { AppRouts } from '../../share/constants/route-config';
+import { ContainerWrapper } from '../../share/components/container-wrapper';
+import './HomePage.scss';
 
 const key = 'home';
 
 export function HomePage({ onLogout }) {
   useInjectReducer({ key, reducer });
-  // useInjectSaga({ key, saga });
 
   return (
-    <article>
+    <ContainerWrapper>
       <Helmet>
         <title>Home Page</title>
         <meta
           name="description"
+          ю
           content="A React.js Boilerplate application homepage"
         />
       </Helmet>
-      <div>
-        <Section>
-          <H2>
-            <FormattedMessage {...messages.homeHeader} />
-          </H2>
-          <StyledButton type="button" onClick={() => onLogout()}>
+      <Jumbotron>
+        <h1>
+          <FormattedMessage {...messages.homeHeader} />
+        </h1>
+        <p>
+          This is a simple hero unit, a simple jumbotron-style component for
+          calling extra attention to featured content or information.
+        </p>
+        <p>
+          <Button variant="outline-primary" onClick={() => onLogout()}>
             Log out
-          </StyledButton>
-          <Link to={AppRouts.JUPYTER}>
-            <Button>Jupyter</Button>
-          </Link>
-        </Section>
-      </div>
-    </article>
+          </Button>
+        </p>
+      </Jumbotron>
+      <Link to={AppRouts.JUPYTER}>
+        <Button>Jupyter</Button>
+      </Link>
+    </ContainerWrapper>
   );
 }
 

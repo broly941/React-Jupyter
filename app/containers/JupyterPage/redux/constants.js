@@ -1,12 +1,9 @@
-/*
- * HomeConstants
- * Each action has a corresponding type, which the reducer knows and picks up on.
- * To avoid weird typos between the reducer and the actions, we save them as
- * constants here. We prefix them with 'yourproject/YourComponent' so we avoid
- * reducers accidentally picking up actions they shouldn't.
- *
- * Follow this format:
- * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
- */
-
-export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+export const GET_FILE_NAMES = 'JUPYTER/GET_FILE_NAMES';
+export const GET_FILE_NAMES_SUCCESS = 'JUPYTER/GET_FILE_NAMES_SUCCESS';
+export const GET_NOTEBOOK = 'JUPYTER/GET_NOTEBOOK';
+export const GET_NOTEBOOK_SUCCESS = 'JUPYTER/GET_NOTEBOOK_SUCCESS';
+export const SELECT_FILE_NAME = 'JUPYTER/SELECT_FILE_NAME';
+export const SAVE_NOTEBOOK = 'JUPYTER/SAVE_NOTEBOOK';
+export const SAVE_CELL_LOCALLY = 'JUPYTER/SAVE_CELL_LOCALLY';
+export const CLEAR_LOCAL_CELL_STORAGE = 'JUPYTER/CLEAR_LOCAL_CELL_STORAGE';
+export const RESTART_KERNEL = 'JUPYTER/RESTART_KARNEL';

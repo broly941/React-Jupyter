@@ -1,10 +1,10 @@
 import { hashSync } from 'bcryptjs';
 import { call, takeLatest } from 'redux-saga/effects';
 import {
+  IS_LOGGED_IN_REQUEST,
   LOGIN_REQUEST,
   LOGOUT_REQUEST,
   REGISTER_REQUEST,
-  IS_LOGGED_IN_REQUEST,
 } from 'containers/App/redux/constants';
 import { put } from '@redux-saga/core/effects';
 import auth from '../../../share/utils/auth';

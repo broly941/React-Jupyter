@@ -13,8 +13,7 @@ export default defineMessages({
       'A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices',
   },
   signUpHeader: {
-    id: `${scope}.tryme.header`,
-    defaultMessage: 'SignUp!',
+    id: `${scope}.header`,
   },
   trymeMessage: {
     id: `${scope}.tryme.message`,
