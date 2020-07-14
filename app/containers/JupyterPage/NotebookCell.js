@@ -4,8 +4,9 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import './NotebookCell.scss';
-import { Form } from 'react-bootstrap';
+import { Alert, Figure, Form } from 'react-bootstrap';
 import { saveCellLocally } from './redux/actions';
+import { OutputTypes } from '../../share/constants/output-types';
 
 class NotebookCell extends React.Component {
   constructor(props) {
@@ -27,6 +28,41 @@ class NotebookCell extends React.Component {
     this.props.saveCell(this.props.index, source);
   };
 
+  initOutputsAlert = () =>
+    this.props.cell.outputs.map(output => {
+      if (output.output_type === OutputTypes.ERROR) {
+        return (
+          <Alert variant="danger">
+            <Alert.Heading>{output.ename}</Alert.Heading>
+            <p>{output.evalue}</p>
+          </Alert>
+        );
+      }
+      if (output.output_type === OutputTypes.STREAM) {
+        return (
+          <Alert variant="danger">
+            <Alert.Heading>{output.name}</Alert.Heading>
+            <p>{output.text}</p>
+          </Alert>
+        );
+      }
+      if (output.output_type === OutputTypes.DISPLAY_DATA) {
+        const img = output.data['image/png'];
+        return (
+          <Alert variant="light">
+            <Figure>
+              <Figure.Image
+                src={`data:image/jpeg;base64,${output.data['image/png']}`}
+              />
+            </Figure>
+            <Alert.Heading>{output.name}</Alert.Heading>
+            <p>{output.text}</p>
+          </Alert>
+        );
+      }
+      return null;
+    });
+
   render() {
     return (
       <Form.Group controlId={`ControlTextarea-${this.props.index}`}>
@@ -37,6 +73,7 @@ class NotebookCell extends React.Component {
           onChange={this.handleChange}
           value={this.state.source}
         />
+        {this.initOutputsAlert()}
       </Form.Group>
     );
   }
