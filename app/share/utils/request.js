@@ -1,10 +1,5 @@
-/**
- * Checks if a network request came back fine, and throws an error if not
- *
- * @param  {object} response   A response from a network request
- *
- * @return {object|undefined} Returns either the response, or throws an error
- */
+import axios from 'axios';
+
 function checkStatus(response) {
   if (!response.ok) {
     throw response;
@@ -12,14 +7,13 @@ function checkStatus(response) {
   return response.json();
 }
 
-/**
- * Requests a URL, returning a promise
- *
- * @param  {string} url       The URL we want to request
- * @param  {object} [options] The options we want to pass to "fetch"
- *
- * @return {object}           The response data
- */
+function checkAxiosStatus(response) {
+  if (response.status !== 200) {
+    throw response;
+  }
+  return response.data;
+}
+
 export default function request(url, options) {
   return fetch(url, options)
     .then(checkStatus)
@@ -29,5 +23,14 @@ export default function request(url, options) {
       err.body = body;
       err.status = error.status;
       throw err;
+    });
+}
+
+export function requestAxios(url, requesBody, options) {
+  return axios
+    .put(url, requesBody, options)
+    .then(checkAxiosStatus)
+    .catch(error => {
+      console.log(error);
     });
 }

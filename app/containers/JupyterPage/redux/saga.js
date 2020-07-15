@@ -6,7 +6,7 @@ import {
   RESTART_KERNEL,
   SAVE_NOTEBOOK,
 } from './constants';
-import request from '../../../share/utils/request';
+import request, { requestAxios } from '../../../share/utils/request';
 import {
   clearLocalCellStorage,
   getFileNamesInDirSuccess,
@@ -61,26 +61,22 @@ export function* saveNotebook(action) {
   try {
     const dir = yield select(makeSelectDir());
     const selectedFileName = yield select(makeSelectSelectedFileName());
-    const response = yield call(
-      request,
+
+    yield call(
+      requestAxios,
       `http://${host}/api/contents/${dir}/${selectedFileName}`,
+      action.payload,
       {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           Authorization: `token ${token}`,
         },
-        method: 'PUT',
-        body: action.payload,
       },
     );
-    yield put(getNotebookSuccess(response));
+    toast.success('Notebook has been updated');
   } catch (error) {
-    Promise.resolve(error.body).then(errorBody => {
-      toast.error(
-        `${error.status}: ${errorBody.message} ${errorBody.reason || ''}`,
-      );
-    });
+    toast.success("Notebook hasn/'t been updated");
   }
 }
 
