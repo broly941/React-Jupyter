@@ -14,7 +14,7 @@ import {
 } from './actions';
 import { makeSelectDir, makeSelectSelectedFileName } from './selectors';
 
-const token = '3a2802d2e64c474bcb4dff89c5c66d69c1b888875d860894';
+const token = '';
 const host = 'localhost:8888';
 
 export function* getNotebook() {
@@ -76,7 +76,11 @@ export function* saveNotebook(action) {
     );
     yield put(getNotebookSuccess(response));
   } catch (error) {
-    //
+    Promise.resolve(error.body).then(errorBody => {
+      toast.error(
+        `${error.status}: ${errorBody.message} ${errorBody.reason || ''}`,
+      );
+    });
   }
 }
 
