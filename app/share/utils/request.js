@@ -1,17 +1,8 @@
-import axios from 'axios';
-
 function checkStatus(response) {
   if (!response.ok) {
     throw response;
   }
   return response.json();
-}
-
-function checkAxiosStatus(response) {
-  if (response.status !== 200) {
-    throw response;
-  }
-  return response.data;
 }
 
 export default function request(url, options) {
@@ -23,14 +14,5 @@ export default function request(url, options) {
       err.body = body;
       err.status = error.status;
       throw err;
-    });
-}
-
-export function requestAxios(url, requesBody, options) {
-  return axios
-    .put(url, requesBody, options)
-    .then(checkAxiosStatus)
-    .catch(error => {
-      console.log(error);
     });
 }

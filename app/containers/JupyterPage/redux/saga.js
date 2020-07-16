@@ -6,14 +6,14 @@ import {
   RESTART_KERNEL,
   SAVE_NOTEBOOK,
 } from './constants';
-import request, { requestAxios } from '../../../share/utils/request';
+import request from '../../../share/utils/request';
 import {
   clearLocalCellStorage,
   getFileNamesInDirSuccess,
   getNotebookSuccess,
 } from './actions';
 import { makeSelectDir, makeSelectSelectedFileName } from './selectors';
-import { token, host } from '../../../share/constants/jupyter-config';
+import { host, token } from '../../../share/constants/jupyter-config';
 
 export function* getNotebook() {
   try {
@@ -59,22 +59,26 @@ export function* saveNotebook(action) {
   try {
     const dir = yield select(makeSelectDir());
     const selectedFileName = yield select(makeSelectSelectedFileName());
-
     yield call(
-      requestAxios,
+      request,
       `http://${host}/api/contents/${dir}/${selectedFileName}`,
-      action.payload,
       {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           Authorization: `token ${token}`,
         },
+        method: 'PUT',
+        body: JSON.stringify(action.payload),
       },
     );
+    yield put(clearLocalCellStorage());
     toast.success('Notebook has been updated');
   } catch (error) {
-    toast.success("Notebook hasn/'t been updated");
+    Promise.resolve(error.body).then(errorBody => {
+      toast.error("Notebook hasn/'t been updated");
+      toast.error(errorBody.message);
+    });
   }
 }
 
