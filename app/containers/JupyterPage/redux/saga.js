@@ -13,9 +13,7 @@ import {
   getNotebookSuccess,
 } from './actions';
 import { makeSelectDir, makeSelectSelectedFileName } from './selectors';
-
-const token = '';
-const host = 'localhost:8888';
+import { token, host } from '../../../share/constants/jupyter-config';
 
 export function* getNotebook() {
   try {
