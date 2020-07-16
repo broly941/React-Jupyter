@@ -6,3 +6,8 @@
 4.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
     _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
 
+The app uses fakeAuthServer that stores user accounts in localStorage.
+
+Default credentials: <br /> 
+login: <i>test</i> <br />
+pasword: <i>password</i> <br />
