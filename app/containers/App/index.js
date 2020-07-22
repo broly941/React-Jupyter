@@ -16,6 +16,7 @@ import WelcomePage from 'containers/WelcomePage/Loadable';
 import SignUpPage from 'containers/SignUpPage/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
 import JupyterPage from 'containers/JupyterPage/Loadable';
+import MlflowPage from 'containers/MlflowPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import { connect } from 'react-redux';
@@ -59,6 +60,7 @@ export function App({ isUserLoggedIn }) {
         />
         <ProtectedRoute exact path={AppRouts.HOME} component={HomePage} />
         <ProtectedRoute exact path={AppRouts.JUPYTER} component={JupyterPage} />
+        <ProtectedRoute exact path={AppRouts.MLFLOW} component={MlflowPage} />
         <Route path={AppRouts.NOT_FOUND} component={NotFoundPage} />
       </Switch>
       <Footer />

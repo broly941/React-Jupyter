@@ -1,2 +1,2 @@
-export const token = 'afc133e901cbd3a5beedb7d36b51f0c2a997f897f5fd8183';
+export const token = '8f97017f289b7a8da1b79d4cb0a077f4f00bdfe63a27f526';
 export const host = 'localhost:8888';

@@ -1,15 +1,8 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-
 import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
-import PropTypes from 'prop-types';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
 import { useInjectReducer } from '../../share/utils/injectReducer';
@@ -17,27 +10,26 @@ import reducer from './redux/reducer';
 import saga from './redux/saga';
 import history from '../../share/utils/history';
 import { useInjectSaga } from '../../share/utils/injectSaga';
-import { getFileNamesInDir } from './redux/actions';
-import { makeSelectNotebook } from './redux/selectors';
-import FileNamesTable from './FileNamesTable';
 import 'react-toastify/dist/ReactToastify.css';
-import NotebookEditor from './NotebookEditorForm';
+import { getMlflowExperiments } from './redux/actions';
+import ExperimentsNameTable from './ExperimentsNameTable';
+import RunsTable from './RunsTable';
 
-const key = 'jupyter';
+const key = 'mlflow';
 
-export function JupyterPage({ getFileNamesInDirectory }) {
+export function MlflowPage({ getExperimentsList }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   React.useEffect(() => {
-    getFileNamesInDirectory();
+    getExperimentsList();
   }, []);
 
   return (
-    <Container>
+    <Container fluid>
       <ToastContainer />
       <Helmet>
-        <title>Jupyter Page</title>
+        <title>Mlflow Page</title>
         <meta
           name="description"
           content="A React.js Boilerplate application homepage"
@@ -49,10 +41,10 @@ export function JupyterPage({ getFileNamesInDirectory }) {
         </Button>
         <Row>
           <Col md={4}>
-            <FileNamesTable />
+            <ExperimentsNameTable />
           </Col>
           <Col md={8}>
-            <NotebookEditor />
+            <RunsTable />
           </Col>
         </Row>
       </div>
@@ -60,26 +52,22 @@ export function JupyterPage({ getFileNamesInDirectory }) {
   );
 }
 
-JupyterPage.propTypes = {
-  getFileNamesInDirectory: PropTypes.func,
+MlflowPage.propTypes = {
+  getExperimentsList: PropTypes.func,
 };
-
-const mapStateToProps = createStructuredSelector({
-  notebook: makeSelectNotebook(),
-});
 
 export function mapDispatchToProps(dispatch) {
   return {
-    getFileNamesInDirectory: () => dispatch(getFileNamesInDir()),
+    getExperimentsList: () => dispatch(getMlflowExperiments()),
   };
 }
 
 const withConnect = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 );
 
 export default compose(
   withConnect,
   memo,
-)(JupyterPage);
+)(MlflowPage);

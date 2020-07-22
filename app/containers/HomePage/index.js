@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import { Link } from 'react-router-dom';
-import { Button, Jumbotron } from 'react-bootstrap';
+import { Button, Col, Container, Jumbotron, Row } from 'react-bootstrap';
 import { useInjectReducer } from '../../share/utils/injectReducer';
 import messages from './messages';
 import { logoutRequest } from '../App/redux/actions';
@@ -45,9 +45,20 @@ export function HomePage({ onLogout }) {
           </Button>
         </p>
       </Jumbotron>
-      <Link to={AppRouts.JUPYTER}>
-        <Button>Jupyter</Button>
-      </Link>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col sm="auto">
+            <Link to={AppRouts.JUPYTER}>
+              <Button>Jupyter</Button>
+            </Link>
+          </Col>
+          <Col sm="auto">
+            <Link to={AppRouts.MLFLOW}>
+              <Button>Mlflow</Button>
+            </Link>
+          </Col>
+        </Row>
+      </Container>
     </ContainerWrapper>
   );
 }

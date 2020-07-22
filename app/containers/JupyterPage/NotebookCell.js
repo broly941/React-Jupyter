@@ -28,8 +28,12 @@ class NotebookCell extends React.Component {
     this.props.saveCell(this.props.index, source);
   };
 
-  initOutputsAlert = () =>
-    this.props.cell.outputs.map(output => {
+  initOutputsAlert = () => {
+    const { outputs } = this.props.cell;
+    if (_.isEmpty(outputs)) {
+      return null;
+    }
+    return outputs.map(output => {
       if (output.output_type === OutputTypes.ERROR) {
         return (
           <Alert variant="danger">
@@ -47,7 +51,6 @@ class NotebookCell extends React.Component {
         );
       }
       if (output.output_type === OutputTypes.DISPLAY_DATA) {
-        const img = output.data['image/png'];
         return (
           <Alert variant="light">
             <Figure>
@@ -62,6 +65,7 @@ class NotebookCell extends React.Component {
       }
       return null;
     });
+  };
 
   render() {
     return (

@@ -3,14 +3,13 @@ import {
   CLEAR_LOCAL_CELL_STORAGE,
   GET_FILE_NAMES_SUCCESS,
   GET_NOTEBOOK_SUCCESS,
-  GET_SESSIONS_SUCCESS,
   SAVE_CELL_LOCALLY,
   SELECT_FILE_NAME,
 } from './constants';
 
 export const initialState = {
   error: false,
-  dir: 'demos',
+  dir: '',
   seletedFileName: null,
   fileNames: null,
   notebook: null,

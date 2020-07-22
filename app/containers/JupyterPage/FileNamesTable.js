@@ -21,19 +21,17 @@ export function FileNamesTable({
     fileNames
       .filter(fileName => fileName.name.endsWith('.ipynb'))
       .map(fileName => (
-        <tbody key={fileName.name}>
-          <tr
-            onClick={() => {
-              selectName(fileName.name);
-              getNotebookData();
-            }}
-            className={`${
-              selectedFileName !== fileName.name ? '' : 'selected-file-name'
-            }`}
-          >
-            <td>{fileName.name}</td>
-          </tr>
-        </tbody>
+        <tr
+          onClick={() => {
+            selectName(fileName.name);
+            getNotebookData();
+          }}
+          className={`${
+            selectedFileName !== fileName.name ? '' : 'selected-file-name'
+          }`}
+        >
+          <td>{fileName.name}</td>
+        </tr>
       ));
 
   return (
@@ -45,7 +43,7 @@ export function FileNamesTable({
               <th>FileName:</th>
             </tr>
           </thead>
-          {initiateTable()}
+          <tbody>{initiateTable()}</tbody>
         </Table>
       </Container>
     )
